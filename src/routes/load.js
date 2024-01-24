@@ -5,13 +5,13 @@ const Node = require('../models/nodes');
 const Edge = require('../models/edges');
 const User = require('../models/users');
 const { models, Error } = require('mongoose');
+const userAuth = require('../middleware/auth'); 
 
-
-router.get('/initialData',async(req,res) => {
-    
-    const owner = req.query.owner;
-    const ns = await Node.find({owner:Number(owner)}).exec();
-    const es = await Edge.find({owner:Number(owner)}).exec();
+router.get('/initialData', userAuth, async(req,res) => {
+    console.log("here");
+    const owner = req.body.owner;
+    const ns = await Node.find({owner:owner}).exec();
+    const es = await Edge.find({owner:owner}).exec();
     let nodes = [];
     let edges = [];
     for (const node of ns) {

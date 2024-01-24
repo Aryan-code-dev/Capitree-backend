@@ -22,9 +22,8 @@ const mongoose = require('mongoose')
         required: true
     },
     owner:{
-        type: Number,
+        type: String,
         required: true,
-        
     },
     type:{
         type:String,

@@ -10,6 +10,8 @@ const port = process.env.PORT || 3001;
 
 app.use('/load',require('./src/routes/load'));
 app.use('/update',require('./src/routes/update'));
+app.use('/login',require('./src/routes/login'));
+app.use('/register',require('./src/routes/register'));
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello world</h1>');
