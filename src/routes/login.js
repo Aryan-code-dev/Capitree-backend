@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
             let token = await user.generateAuthToken(); // not sure if error handling is necessary here
             let result = {
                 token: `Bearer ${token}`,
+                owner: email,
                 message: "You are now logged in."
             };
             return res.status(200).json({result});

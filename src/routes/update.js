@@ -9,7 +9,7 @@ const userAuth = require('../middleware/auth');
 
 router.post('/localUpdate', userAuth, async(req,res) => {
 
-   
+   console.log('in update');
     const nodes = req.body.nodes;
     const edges = req.body.edges;
     const owner = req.body.owner;
@@ -26,14 +26,15 @@ router.post('/localUpdate', userAuth, async(req,res) => {
         await Edge.deleteMany({ edgeId: { $nin: edgesIdsToKeep }, owner: owner });
 
         for(let i=0;i<nodes.length;i++) {
-            // console.log(nodes[i])
+            console.log(nodes[i])
             const filter = { nodeId: nodes[i].id, owner: owner};
             const update = { type:nodes[i].type,returnType: nodes[i].data.returnType, label: nodes[i].data.label, height: nodes[i].height, width: nodes[i].width, x: nodes[i].position.x, y: nodes[i].position.y};
 
 
             let node = await Node.updateOne(filter,update);
-            
+            console.log(node);
             if(node.matchedCount == 0){
+                console.log("here");
                 await Node.create({nodeId: nodes[i].id, owner: owner,type:nodes[i].type,returnType: nodes[i].data.returnType,label: nodes[i].data.label, height: nodes[i].height, width: nodes[i].width, x: nodes[i].position.x, y: nodes[i].position.y})
             }
             

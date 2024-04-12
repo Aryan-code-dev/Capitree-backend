@@ -8,7 +8,6 @@ const { models, Error } = require('mongoose');
 const userAuth = require('../middleware/auth'); 
 
 router.get('/initialData', userAuth, async(req,res) => {
-    console.log("here");
     const owner = req.body.owner;
     const ns = await Node.find({owner:owner}).exec();
     const es = await Edge.find({owner:owner}).exec();

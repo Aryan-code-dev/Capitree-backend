@@ -28,11 +28,13 @@ router.post('/', async (req, res) => {
         })
         var suc = await newUser.save();
         console.log(suc);
-        
-        res.status(200).json({ message: 'User registration successful' });
+        if(suc){
+            await Node.create({nodeId: "0", owner: email,type: "default",returnType: "",label: "USER", height: 100, width: 50, x: 50, y: 50})
+        }
+        return res.status(200).json({ message: 'User registration successful' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        return res.status(500).json({ error: 'Internal server error' });
     }
 
 

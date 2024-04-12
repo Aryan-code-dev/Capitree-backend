@@ -41,8 +41,7 @@ const mongoose = require('mongoose');
         required: true,
     },
     returnType:{
-        type:String,
-        required: true,
+        type:String
     }
  });
 
