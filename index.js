@@ -1,9 +1,9 @@
 const express = require('express');
 var cors = require('cors');
 const app = express();
-const Node = require('../backend/src/models/nodes');
-const Edge = require('../backend/src/models/edges');
-const User = require('../backend/src/models/users');
+const Node = require('./src/models/nodes');
+const Edge = require('./src/models/edges');
+const User = require('./src/models/users');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
